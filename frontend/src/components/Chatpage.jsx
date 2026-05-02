@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import {
   MoveLeft,
   MessageCircleCode,
+  Search,
   Send,
 } from "lucide-react";
 import Messages from "./MEssages";
@@ -70,10 +71,11 @@ function Chatpage() {
         `}
         >
           {/* TOP */}
-          <div className="p-6 text-center border-b bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-            <h1 className="text-xl font-bold">
-              Your NetWork is Your NetWorth
-            </h1>
+          <div className="p-6 justify-center text-center border-b bg-gradient-to-r from-indigo-600 to-purple-600  text-white">
+            <h1 className="text-xl font-bold">Your NetWork is Your NetWorth</h1>
+
+            {/* SEARCH */}
+
           </div>
 
           {/* USER LIST */}
@@ -103,7 +105,7 @@ function Chatpage() {
 
         {/* ================= CHAT PANEL ================= */}
         {selectedUser ? (
-          <section className="flex-1 flex flex-col h-full">
+         <section className="flex-1 flex flex-col h-full">
 
             {/* HEADER */}
             <div className="bg-white border-b px-4 py-3 flex items-center gap-3">
@@ -130,14 +132,13 @@ function Chatpage() {
               </Link>
             </div>
 
-            {/* MESSAGES (SCROLL ONLY HERE) */}
-            <div className="flex-1 overflow-y-auto bg-slate-50 px-2">
+            {/* MESSAGES */}
+            <div className="flex-1 overflow-y-auto bg-slate-50 pb-24">
               <Messages selectedUser={selectedUser} />
             </div>
 
-            {/* INPUT (FIXED BOTTOM) */}
-            <div className="bg-white border-t p-3 md:p-4">
-              <div className="flex items-center gap-2 bg-slate-100 rounded-full px-3 py-2">
+            {/* INPUT */}
+            <div className="fixed bottom-0 left-0 right-0 md:left-[320px] bg-white border-t p-3 md:p-4 mb-22">              <div className="flex items-center gap-2 bg-slate-100 rounded-full px-3 py-2">
 
                 <Input
                   value={textMessage}
@@ -159,10 +160,8 @@ function Chatpage() {
                 >
                   <Send className="w-4 h-4 text-white" />
                 </Button>
-
               </div>
             </div>
-
           </section>
         ) : (
           <div className="hidden md:flex flex-1 items-center justify-center bg-slate-50">
@@ -189,3 +188,5 @@ function Chatpage() {
 }
 
 export default Chatpage;
+
+

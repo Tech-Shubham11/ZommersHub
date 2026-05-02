@@ -12,15 +12,14 @@ function Messages({ selectedUser }) {
 
   const bottomRef = useRef(null);
 
-  // ✅ auto scroll to latest message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-screen w-full bg-white">
+    <div className="flex flex-col h-full w-full bg-white">
 
-      {/* ===== CHAT AREA ===== */}
+      {/* CHAT AREA */}
       <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 bg-gray-50 space-y-3">
 
         {messages && messages.length > 0 ? (
@@ -58,11 +57,8 @@ function Messages({ selectedUser }) {
           </div>
         )}
 
-        {/* auto scroll anchor */}
         <div ref={bottomRef} />
-
       </div>
-
     </div>
   );
 }
