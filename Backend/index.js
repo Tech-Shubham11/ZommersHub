@@ -28,12 +28,6 @@ app.use(
 const __dirname = path.resolve();
 
 // Test route
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "I am coming from backend",
-    success: true,
-  });
-});
 
 // Routes
 app.use("/api/v1/user", userRoute);
