@@ -132,13 +132,13 @@ function Profile() {
       <div className="h-40 md:h-56 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-b-[40px]" />
 
       {/* PROFILE CARD */}
-      <div className="max-w-4xl mx-auto px-4 -mt-24">
+      <div className="max-w-2xl mx-auto px-4 -mt-24">
 
-        <div className="bg-white shadow-xl rounded-3xl p-6 md:p-10">
+        <div className="bg-white shadow-xl rounded-2xl p-6 md:p-10">
 
           <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
 
-            <Avatar className="h-28 w-28 md:h-36 md:w-36">
+            <Avatar className="h-20 w-20 md:h-20 md:w-20">
               <AvatarImage src={profileData?.profilePhoto} />
               <AvatarFallback>
                 {profileData?.username?.charAt(0)}
@@ -147,7 +147,7 @@ function Profile() {
 
             <div className="flex-1 text-center md:text-left">
 
-              <h1 className="text-2xl md:text-4xl font-bold">
+              <h1 className="text-xl md:text-2xl font-bold">
                 {profileData?.username}
               </h1>
 
@@ -161,7 +161,7 @@ function Profile() {
                 {isOwn ? (
                   <Link to="/account/edit">
                     <Button>
-                      <Settings size={16} className="mr-2" />
+                      <Settings size={12} className="mr-2" />
                       Edit Profile
                     </Button>
                   </Link>
@@ -175,7 +175,7 @@ function Profile() {
                           : "bg-indigo-600 hover:bg-indigo-700"
                       }
                     >
-                      <UserPlus size={16} className="mr-2" />
+                      <UserPlus size={14} className="mr-2" />
                       {isFollowing ? "Unfollow" : "Follow"}
                     </Button>
 
