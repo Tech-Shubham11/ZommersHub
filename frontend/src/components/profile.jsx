@@ -132,7 +132,7 @@ function Profile() {
       <div className="h-40 md:h-56 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-b-[40px]" />
 
       {/* PROFILE CARD */}
-      <div className="max-w-2xl mx-auto px-4 -mt-24">
+      <div className="max-w-2xl mx-auto px-4 -mt-10">
 
         <div className="bg-white shadow-xl rounded-2xl p-6 md:p-10">
 
