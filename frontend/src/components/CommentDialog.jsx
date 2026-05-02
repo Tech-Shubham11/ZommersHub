@@ -38,7 +38,7 @@ const sendMessageHandler = async ()=>{
 
   try{
     const res = await axios.post(
-      `http://localhost:5000/api/v1/post/${selectedPost._id}/comment`,
+      `https://zommershub.onrender.com/api/v1/post/${selectedPost._id}/comment`,
       { text },
       { withCredentials:true }
     );

@@ -69,7 +69,7 @@ try{
 setLoading(true);
 
 const res=await axios.post(
-"http://localhost:5000/api/v1/post/addpost",
+"https://zommershub.onrender.com/api/v1/post/addpost",
 formData,
 { withCredentials:true }
 );

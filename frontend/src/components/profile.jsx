@@ -44,7 +44,7 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/v1/user/profile/${id}`,
+        `https://zommershub.onrender.com/api/v1/user/profile/${id}`,
         { withCredentials: true }
       );
 
@@ -75,7 +75,7 @@ function Profile() {
   const handleFollow = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/user/follow/${id}`,
+        `https://zommershub.onrender.com/api/v1/user/follow/${id}`,
         {},
         { withCredentials: true }
       );

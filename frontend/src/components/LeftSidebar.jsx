@@ -34,7 +34,7 @@ const [active,setActive]=useState("Home");
 const logoutHandler=async()=>{
 try{
 const res=await axios.get(
-"http://localhost:5000/api/v1/user/logout",
+"https://zommershub.onrender.com/api/v1/user/logout",
 {withCredentials:true}
 );
 

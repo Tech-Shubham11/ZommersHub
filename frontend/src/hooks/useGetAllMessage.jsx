@@ -14,7 +14,7 @@ const useGetAllMessage = () => {
     const fetchAllMessage = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/v1/message/all/${selectedUser._id}`,
+          `https://zommershub.onrender.com/api/v1/message/all/${selectedUser._id}`,
           { withCredentials: true }
         );
 

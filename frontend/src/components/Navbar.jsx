@@ -28,7 +28,7 @@ const [showLogoutModal,setShowLogoutModal]=useState(false);
 const logoutHandler = async () => {
 try{
   const res = await axios.get(
-    "http://localhost:5000/api/v1/user/logout",
+    "https://zommershub.onrender.com/api/v1/user/logout",
     { withCredentials:true }
   );
 
@@ -84,35 +84,6 @@ cursor-pointer
 </div>
 
 
-
-{/* SEARCH (DESKTOP) */}
-{/* <div className="hidden md:flex w-full max-w-lg mx-6">
-<div className="
-flex items-center w-full
-bg-gray-100
-rounded-xl
-px-4 py-2
-">
-
-<Search className="w-4 h-4 text-gray-400"/>
-
-<input
-type="text"
-placeholder="Search..."
-className="
-bg-transparent
-w-full
-ml-2
-outline-none
-text-sm
-"
-/>
-
-</div>
-</div> */}
-
-
-
 {/* RIGHT */}
 <div className="flex items-center gap-2 md:gap-4">
 
@@ -151,21 +122,6 @@ Logout
 </div>
 
 </div>
-
-
-
-{/* MOBILE MENU */}
-{/* {mobileMenu && (
-<div className="
-md:hidden
-border-t
-bg-white
-px-4 py-4
-space-y-4
-">
-
-{/* SEARCH */}
-{/* */}
 
 
 </nav>

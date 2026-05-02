@@ -49,7 +49,7 @@ try{
 const action=liked?"dislike":"like";
 
 const res=await axios.get(
-`http://localhost:5000/api/v1/post/${post?._id}/${action}`,
+`https://zommershub.onrender.com/api/v1/post/${post?._id}/${action}`,
 {withCredentials:true}
 );
 
@@ -80,7 +80,7 @@ const deletePostHandler=async()=>{
 try{
 
 const res=await axios.delete(
-`http://localhost:5000/api/v1/post/delete/${post?._id}`,
+`https://zommershub.onrender.com/api/v1/post/delete/${post?._id}`,
 {withCredentials:true}
 )
 
@@ -109,7 +109,7 @@ const bookmarkHandler=async()=>{
 try{
 
 const res=await axios.get(
-`http://localhost:5000/api/v1/post/${post?._id}/bookmark`,
+`https://zommershub.onrender.com/api/v1/post/${post?._id}/bookmark`,
 {withCredentials:true}
 )
 
