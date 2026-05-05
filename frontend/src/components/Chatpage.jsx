@@ -43,7 +43,7 @@ function Chatpage() {
       );
 
       if (res.data.success) {
-        dispatch(setMessage([...messages, res.data.newMessage]));
+        dispatch(setMessage((prev) => [...prev, res.data.newMessage]));
         setTextMessage("");
       }
     } catch (error) {

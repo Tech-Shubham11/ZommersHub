@@ -10,8 +10,9 @@ import { io } from "socket.io-client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSocket } from "./redux/socketSlice.js";
-import { setChatUser } from "./redux/chatSlice.js";
+
+import { setSocket, setOnlineUsers } from "./redux/socketSlice.js"; // ✅ FIX
+import { setMessage } from "./redux/chatSlice.js"; // ✅ IMPORTANT
 import Search from "./components/Search.jsx";
 import { setLikeNotification } from "./redux/rtnSlice.js";
 import ProtectedRouted from "./components/protectedRouted.jsx";
@@ -19,26 +20,27 @@ import ProtectedRouted from "./components/protectedRouted.jsx";
 const browserRouter = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRouted><MainLayout/></ProtectedRouted>  ,
+    element: <ProtectedRouted><MainLayout/></ProtectedRouted>,
     children: [
       {
         path: "/",
-        element:<ProtectedRouted><Home/></ProtectedRouted> ,
+        element: <ProtectedRouted><Home/></ProtectedRouted>,
       },
       {
         path: "/profile/:id",
-        element:<ProtectedRouted><Profile/></ProtectedRouted> ,
+        element: <ProtectedRouted><Profile/></ProtectedRouted>,
       },
       {
         path: "/account/edit",
-        element:<ProtectedRouted><EditProfile/></ProtectedRouted> ,
+        element: <ProtectedRouted><EditProfile/></ProtectedRouted>,
       },
       {
         path: "/chat",
         element: <ProtectedRouted><Chatpage/></ProtectedRouted>,
-      },{
+      },
+      {
         path: "/search",
-        element:<ProtectedRouted><Search/></ProtectedRouted> ,
+        element: <ProtectedRouted><Search/></ProtectedRouted>,
       }
     ],
   },
@@ -55,35 +57,42 @@ const browserRouter = createBrowserRouter([
 function App() {
   const { user } = useSelector((store) => store.auth);
   const { socket } = useSelector((store) => store.socketio);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user) {
-      const socketio = io("http://localhost:5000", {
-        query: {
-          userId: user?._id,
-        },
-        transports: ["websocket"],
-      });
+    if (!user) return;
 
-      dispatch(setSocket(socketio));
+    // ✅ CREATE SOCKET
+    const socketio = io("http://localhost:5000", {
+      query: {
+        userId: user._id,
+      },
+      transports: ["websocket"],
+    });
 
-      socketio.on("getOnlineUsers", (onlineUsers) => {
-        dispatch(setChatUser(onlineUsers)); // ✅ FIXED
-      });
+    dispatch(setSocket(socketio));
 
-      socketio.on('notification',(notification)=>{
-        dispatch(setLikeNotification(notification));
-      })
+    // ✅ ONLINE USERS
+    socketio.on("getOnlineUsers", (onlineUsers) => {
+      dispatch(setOnlineUsers(onlineUsers)); // ✅ FIXED
+    });
 
-      return () => {
-        socketio.close();
-        dispatch(setSocket(null));
-      };
-    } else if (socket) {
-      socket.close();
+    // ✅ REAL-TIME MESSAGE (MAIN FIX)
+    socketio.on("newMessage", (newMessage) => {
+      dispatch(setMessage((prev) => [...prev, newMessage]));
+    });
+
+    // ✅ LIKE NOTIFICATION
+    socketio.on("notification", (notification) => {
+      dispatch(setLikeNotification(notification));
+    });
+
+    return () => {
+      socketio.disconnect(); // ✅ FIXED cleanup
       dispatch(setSocket(null));
-    }
+    };
+
   }, [user, dispatch]);
 
   return <RouterProvider router={browserRouter} />;
