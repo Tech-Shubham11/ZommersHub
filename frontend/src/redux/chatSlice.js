@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const chatSlice = createSlice({
   name: "chat",
   initialState: {
-    chatUser: null,   // ✅ should be object or null
+    chatUser: null,
     messages: [],
   },
   reducers: {
@@ -11,10 +11,16 @@ const chatSlice = createSlice({
       state.chatUser = action.payload || null;
     },
 
+    // ✅ FIXED (supports functional update for socket real-time)
     setMessage: (state, action) => {
-      state.messages = action.payload || [];
+      if (typeof action.payload === "function") {
+        state.messages = action.payload(state.messages);
+      } else {
+        state.messages = action.payload || [];
+      }
     },
 
+    // ✅ keep as it is (already correct)
     addMessage: (state, action) => {
       state.messages.push(action.payload);
     },
